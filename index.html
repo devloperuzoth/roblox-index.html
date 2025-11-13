@@ -1,0 +1,5671 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>?? Roblox Information Hub ??</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap');
+
+        
+
+        :root {
+
+            --primary: #0f0f23;
+
+            --secondary: #ff006e;
+
+            --accent: #3a86ff;
+
+            --success: #06ffa5;
+
+            --warning: #ffbe0b;
+
+            --light: #f8f9fa;
+
+            --dark: #212529;
+
+            --text-primary: #f8f9fa;
+
+            --text-secondary: rgba(255, 255, 255, 0.7);
+
+            --text-muted: rgba(255, 255, 255, 0.5);
+
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+
+            --gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+
+        }
+
+
+        [data-theme="light"] {
+
+            --primary: #f8f9fa;
+
+            --secondary: #ff006e;
+
+            --accent: #3a86ff;
+
+            --success: #06ffa5;
+
+            --warning: #ffbe0b;
+
+            --light: #0f0f23;
+
+            --dark: #f8f9fa;
+
+            --text-primary: #212529;
+
+            --text-secondary: rgba(0, 0, 0, 0.7);
+
+            --text-muted: rgba(0, 0, 0, 0.5);
+
+        }
+
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+            font-family: 'Exo 2', sans-serif;
+
+        }
+
+
+        body {
+
+            background: var(--primary);
+
+            color: var(--text-primary);
+
+            overflow-x: hidden;
+
+            position: relative;
+
+            transition: background 0.3s ease, color 0.3s ease;
+
+        }
+
+
+        /* Advanced Loading Screen */
+
+        .loader-wrapper {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: var(--primary);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            z-index: 9999;
+
+            transition: opacity 0.5s, visibility 0.5s;
+
+        }
+
+
+        .loader-wrapper.hidden {
+
+            opacity: 0;
+
+            visibility: hidden;
+
+        }
+
+
+        .loader {
+
+            position: relative;
+
+            width: 150px;
+
+            height: 150px;
+
+        }
+
+
+        .loader-circle {
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            border: 3px solid transparent;
+
+            border-top-color: var(--secondary);
+
+            border-radius: 50%;
+
+            animation: spin 1s linear infinite;
+
+        }
+
+
+        .loader-circle:nth-child(2) {
+
+            width: 120px;
+
+            height: 120px;
+
+            top: 15px;
+
+            left: 15px;
+
+            border-top-color: var(--accent);
+
+            animation: spin 0.8s linear infinite reverse;
+
+        }
+
+
+        .loader-circle:nth-child(3) {
+
+            width: 90px;
+
+            height: 90px;
+
+            top: 30px;
+
+            left: 30px;
+
+            border-top-color: var(--success);
+
+            animation: spin 0.6s linear infinite;
+
+        }
+
+
+        .loader-text {
+
+            position: absolute;
+
+            top: 50%;
+
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            font-family: 'Orbitron', monospace;
+
+            font-weight: 900;
+
+            font-size: 1.2rem;
+
+            color: var(--text-primary);
+
+            text-shadow: 0 0 10px var(--secondary);
+
+        }
+
+
+        @keyframes spin {
+
+            0% { transform: rotate(0deg); }
+
+            100% { transform: rotate(360deg); }
+
+        }
+
+
+        /* Advanced Cursor */
+
+        .cursor {
+
+            position: fixed;
+
+            width: 20px;
+
+            height: 20px;
+
+            border-radius: 50%;
+
+            background: var(--secondary);
+
+            pointer-events: none;
+
+            z-index: 9998;
+
+            transition: transform 0.1s ease;
+
+            transform: translate(-50%, -50%);
+
+            mix-blend-mode: difference;
+
+        }
+
+
+        .cursor-follower {
+
+            position: fixed;
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 0, 110, 0.1);
+
+            pointer-events: none;
+
+            z-index: 9997;
+
+            transition: transform 0.3s ease;
+
+            transform: translate(-50%, -50%);
+
+            border: 2px solid var(--secondary);
+
+        }
+
+
+        /* Animated Background */
+
+        .bg-animation {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            z-index: -2;
+
+            overflow: hidden;
+
+        }
+
+
+        .bg-animation span {
+
+            position: absolute;
+
+            display: block;
+
+            list-style: none;
+
+            width: 20px;
+
+            height: 20px;
+
+            background: rgba(255, 255, 255, 0.02);
+
+            animation: move 25s linear infinite;
+
+            bottom: -150px;
+
+        }
+
+
+        .bg-animation span:nth-child(1) {
+
+            left: 25%;
+
+            width: 80px;
+
+            height: 80px;
+
+            animation-delay: 0s;
+
+        }
+
+
+        .bg-animation span:nth-child(2) {
+
+            left: 10%;
+
+            width: 20px;
+
+            height: 20px;
+
+            animation-delay: 2s;
+
+            animation-duration: 12s;
+
+        }
+
+
+        .bg-animation span:nth-child(3) {
+
+            left: 70%;
+
+            width: 20px;
+
+            height: 20px;
+
+            animation-delay: 4s;
+
+        }
+
+
+        .bg-animation span:nth-child(4) {
+
+            left: 40%;
+
+            width: 60px;
+
+            height: 60px;
+
+            animation-delay: 0s;
+
+            animation-duration: 18s;
+
+        }
+
+
+        .bg-animation span:nth-child(5) {
+
+            left: 65%;
+
+            width: 20px;
+
+            height: 20px;
+
+            animation-delay: 0s;
+
+        }
+
+
+        .bg-animation span:nth-child(6) {
+
+            left: 75%;
+
+            width: 110px;
+
+            height: 110px;
+
+            animation-delay: 3s;
+
+        }
+
+
+        .bg-animation span:nth-child(7) {
+
+            left: 35%;
+
+            width: 150px;
+
+            height: 150px;
+
+            animation-delay: 7s;
+
+        }
+
+
+        .bg-animation span:nth-child(8) {
+
+            left: 50%;
+
+            width: 25px;
+
+            height: 25px;
+
+            animation-delay: 15s;
+
+            animation-duration: 45s;
+
+        }
+
+
+        .bg-animation span:nth-child(9) {
+
+            left: 20%;
+
+            width: 15px;
+
+            height: 15px;
+
+            animation-delay: 2s;
+
+            animation-duration: 35s;
+
+        }
+
+
+        .bg-animation span:nth-child(10) {
+
+            left: 85%;
+
+            width: 150px;
+
+            height: 150px;
+
+            animation-delay: 0s;
+
+            animation-duration: 11s;
+
+        }
+
+
+        @keyframes move {
+
+            0% {
+
+                transform: translateY(0) rotate(0deg);
+
+                opacity: 1;
+
+                border-radius: 0;
+
+            }
+
+            100% {
+
+                transform: translateY(-1000px) rotate(720deg);
+
+                opacity: 0;
+
+                border-radius: 50%;
+
+            }
+
+        }
+
+
+        /* Floating Lines Background */
+
+        .line-animation {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            z-index: -1;
+
+            overflow: hidden;
+
+        }
+
+
+        .line {
+
+            position: absolute;
+
+            height: 2px;
+
+            width: 150px;
+
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+
+            animation: moveLine 15s linear infinite;
+
+            opacity: 0;
+
+            filter: blur(1px);
+
+        }
+
+
+        .line:nth-child(1) {
+
+            top: 10%;
+
+            width: 200px;
+
+            animation-duration: 20s;
+
+            animation-delay: 0s;
+
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+
+        }
+
+
+        .line:nth-child(2) {
+
+            top: 25%;
+
+            width: 150px;
+
+            animation-duration: 25s;
+
+            animation-delay: 1s;
+
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+
+        }
+
+
+        .line:nth-child(3) {
+
+            top: 40%;
+
+            width: 180px;
+
+            animation-duration: 18s;
+
+            animation-delay: 2s;
+
+            background: linear-gradient(90deg, transparent, var(--success), transparent);
+
+        }
+
+
+        .line:nth-child(4) {
+
+            top: 55%;
+
+            width: 220px;
+
+            animation-duration: 22s;
+
+            animation-delay: 3s;
+
+            background: linear-gradient(90deg, transparent, var(--warning), transparent);
+
+        }
+
+
+        .line:nth-child(5) {
+
+            top: 70%;
+
+            width: 160px;
+
+            animation-duration: 30s;
+
+            animation-delay: 4s;
+
+            background: linear-gradient(90deg, transparent, var(--gradient-2), transparent);
+
+        }
+
+
+        .line:nth-child(6) {
+
+            top: 85%;
+
+            width: 190px;
+
+            animation-duration: 24s;
+
+            animation-delay: 5s;
+
+            background: linear-gradient(90deg, transparent, var(--gradient-3), transparent);
+
+        }
+
+
+        .line:nth-child(7) {
+
+            top: 15%;
+
+            width: 170px;
+
+            animation-duration: 28s;
+
+            animation-delay: 6s;
+
+            background: linear-gradient(90deg, transparent, var(--gradient-4), transparent);
+
+        }
+
+
+        .line:nth-child(8) {
+
+            top: 30%;
+
+            width: 210px;
+
+            animation-duration: 26s;
+
+            animation-delay: 7s;
+
+            background: linear-gradient(90deg, transparent, var(--gradient-5), transparent);
+
+        }
+
+
+        .line:nth-child(9) {
+
+            top: 45%;
+
+            width: 140px;
+
+            animation-duration: 32s;
+
+            animation-delay: 8s;
+
+            background: linear-gradient(90deg, transparent, var(--secondary), var(--accent), transparent);
+
+        }
+
+
+        .line:nth-child(10) {
+
+            top: 60%;
+
+            width: 200px;
+
+            animation-duration: 35s;
+
+            animation-delay: 9s;
+
+            background: linear-gradient(90deg, transparent, var(--success), var(--warning), transparent);
+
+        }
+
+
+        @keyframes moveLine {
+
+            0% {
+
+                transform: translateX(-100%) translateY(0) rotate(0deg);
+
+                opacity: 0;
+
+            }
+
+            10% {
+
+                opacity: 0.7;
+
+            }
+
+            90% {
+
+                opacity: 0.7;
+
+            }
+
+            100% {
+
+                transform: translateX(100vw) translateY(100px) rotate(360deg);
+
+                opacity: 0;
+
+            }
+
+        }
+
+
+        /* Navigation */
+
+        nav {
+
+            position: fixed;
+
+            top: 0;
+
+            width: 100%;
+
+            padding: 20px 50px;
+
+            background: rgba(15, 15, 35, 0.8);
+
+            backdrop-filter: blur(10px);
+
+            z-index: 1000;
+
+            transition: all 0.3s ease;
+
+        }
+
+
+        [data-theme="light"] nav {
+
+            background: rgba(248, 249, 250, 0.8);
+
+        }
+
+
+        nav.sticky {
+
+            padding: 15px 50px;
+
+            background: rgba(15, 15, 35, 0.95);
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+
+        }
+
+
+        [data-theme="light"] nav.sticky {
+
+            background: rgba(248, 249, 250, 0.95);
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+
+        }
+
+
+        .nav-container {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            max-width: 1400px;
+
+            margin: 0 auto;
+
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            font-family: 'Orbitron', monospace;
+
+            font-weight: 900;
+
+            font-size: 1.8rem;
+
+            color: var(--text-primary);
+
+            text-decoration: none;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        .logo::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: -100%;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: var(--gradient-2);
+
+            transition: left 0.5s;
+
+            z-index: -1;
+
+        }
+
+
+        .logo:hover::before {
+
+            left: 0;
+
+        }
+
+
+        .logo i {
+
+            margin-right: 10px;
+
+            font-size: 2rem;
+
+            background: var(--gradient-2);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            animation: logoGlow 2s infinite alternate;
+
+        }
+
+
+        @keyframes logoGlow {
+
+            0% { text-shadow: 0 0 5px var(--secondary), 0 0 10px var(--secondary); }
+
+            100% { text-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary), 0 0 30px var(--secondary); }
+
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            list-style: none;
+
+            gap: 30px;
+
+        }
+
+
+        .nav-links a {
+
+            color: var(--text-primary);
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+            position: relative;
+
+            padding: 5px 0;
+
+            transition: color 0.3s;
+
+        }
+
+
+        .nav-links a::after {
+
+            content: '';
+
+            position: absolute;
+
+            bottom: 0;
+
+            left: 0;
+
+            width: 0;
+
+            height: 2px;
+
+            background: var(--gradient-2);
+
+            transition: width 0.3s;
+
+        }
+
+
+        .nav-links a:hover {
+
+            color: var(--secondary);
+
+        }
+
+
+        .nav-links a:hover::after {
+
+            width: 100%;
+
+        }
+
+
+        .theme-toggle {
+
+            background: none;
+
+            border: none;
+
+            color: var(--text-primary);
+
+            font-size: 1.2rem;
+
+            cursor: pointer;
+
+            transition: transform 0.3s;
+
+        }
+
+
+        .theme-toggle:hover {
+
+            transform: rotate(180deg);
+
+        }
+
+
+        /* Hero Section */
+
+        .hero {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 100px 20px 50px;
+
+        }
+
+
+        .hero-content {
+
+            text-align: center;
+
+            max-width: 1200px;
+
+            z-index: 1;
+
+        }
+
+
+        .hero-title {
+
+            font-family: 'Orbitron', monospace;
+
+            font-size: clamp(2.5rem, 8vw, 5rem);
+
+            font-weight: 900;
+
+            margin-bottom: 20px;
+
+            background: var(--gradient-2);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            animation: titleFloat 3s ease-in-out infinite;
+
+        }
+
+
+        @keyframes titleFloat {
+
+            0%, 100% { transform: translateY(0); }
+
+            50% { transform: translateY(-20px); }
+
+        }
+
+
+        .hero-subtitle {
+
+            font-size: 1.5rem;
+
+            margin-bottom: 40px;
+
+            color: var(--text-secondary);
+
+            animation: fadeInUp 1s ease 0.5s both;
+
+        }
+
+
+        .hero-buttons {
+
+            display: flex;
+
+            gap: 20px;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            animation: fadeInUp 1s ease 1s both;
+
+        }
+
+
+        .btn {
+
+            display: inline-block;
+
+            padding: 15px 40px;
+
+            border-radius: 50px;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            position: relative;
+
+            overflow: hidden;
+
+            transition: all 0.3s;
+
+            z-index: 1;
+
+        }
+
+
+        .btn-primary {
+
+            background: var(--gradient-2);
+
+            color: white;
+
+            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.3);
+
+        }
+
+
+        .btn-secondary {
+
+            background: transparent;
+
+            color: var(--text-primary);
+
+            border: 2px solid var(--secondary);
+
+        }
+
+
+        .btn::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: rgba(255, 255, 255, 0.2);
+
+            transform: translateX(-100%);
+
+            transition: transform 0.5s;
+
+            z-index: -1;
+
+        }
+
+
+        .btn:hover::before {
+
+            transform: translateX(0);
+
+        }
+
+
+        .btn:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 15px 40px rgba(255, 0, 110, 0.4);
+
+        }
+
+
+        /* Social Links */
+
+        .social-links {
+
+            display: flex;
+
+            gap: 20px;
+
+            justify-content: center;
+
+            margin-top: 40px;
+
+            animation: fadeInUp 1s ease 1.5s both;
+
+        }
+
+
+        .social-link {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 12px 25px;
+
+            background: rgba(255, 255, 255, 0.1);
+
+            border-radius: 50px;
+
+            color: var(--text-primary);
+
+            text-decoration: none;
+
+            transition: all 0.3s;
+
+            backdrop-filter: blur(10px);
+
+        }
+
+
+        [data-theme="light"] .social-link {
+
+            background: rgba(0, 0, 0, 0.1);
+
+            color: var(--text-primary);
+
+        }
+
+
+        .social-link:hover {
+
+            background: var(--gradient-2);
+
+            transform: translateY(-5px) scale(1.05);
+
+            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.3);
+
+        }
+
+
+        .social-link i {
+
+            font-size: 1.5rem;
+
+        }
+
+
+        /* Section Styles */
+
+        .section {
+
+            padding: 100px 20px;
+
+            position: relative;
+
+        }
+
+
+        .container {
+
+            max-width: 1400px;
+
+            margin: 0 auto;
+
+        }
+
+
+        .section-header {
+
+            text-align: center;
+
+            margin-bottom: 60px;
+
+        }
+
+
+        .section-title {
+
+            font-family: 'Orbitron', monospace;
+
+            font-size: clamp(2rem, 5vw, 3rem);
+
+            font-weight: 900;
+
+            margin-bottom: 20px;
+
+            background: var(--gradient-2);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            position: relative;
+
+            display: inline-block;
+
+        }
+
+
+        .section-title::after {
+
+            content: '';
+
+            position: absolute;
+
+            bottom: -10px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: 100px;
+
+            height: 4px;
+
+            background: var(--gradient-2);
+
+            border-radius: 2px;
+
+        }
+
+
+        .section-subtitle {
+
+            font-size: 1.2rem;
+
+            color: var(--text-secondary);
+
+            max-width: 700px;
+
+            margin: 0 auto;
+
+        }
+
+
+        /* About Section */
+
+        .about-content {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 60px;
+
+            align-items: center;
+
+        }
+
+
+        .about-text {
+
+            animation: fadeInLeft 1s ease both;
+
+        }
+
+
+        .about-text p {
+
+            font-size: 1.1rem;
+
+            line-height: 1.8;
+
+            margin-bottom: 20px;
+
+            color: var(--text-secondary);
+
+        }
+
+
+        .about-image {
+
+            position: relative;
+
+            animation: fadeInRight 1s ease both;
+
+        }
+
+
+        .about-image img {
+
+            width: 100%;
+
+            border-radius: 20px;
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+            transition: transform 0.5s;
+
+        }
+
+
+        .about-image:hover img {
+
+            transform: scale(1.05);
+
+        }
+
+
+        /* How To Section */
+
+        .how-to-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 30px;
+
+        }
+
+
+        .how-to-card {
+
+            background: rgba(255, 255, 255, 0.05);
+
+            backdrop-filter: blur(10px);
+
+            border-radius: 20px;
+
+            padding: 40px 30px;
+
+            transition: all 0.3s;
+
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        [data-theme="light"] .how-to-card {
+
+            background: rgba(0, 0, 0, 0.05);
+
+            border: 1px solid rgba(0, 0, 0, 0.1);
+
+        }
+
+
+        .how-to-card::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: var(--gradient-2);
+
+            opacity: 0;
+
+            transition: opacity 0.3s;
+
+            z-index: -1;
+
+        }
+
+
+        .how-to-card:hover {
+
+            transform: translateY(-10px);
+
+            box-shadow: 0 20px 40px rgba(255, 0, 110, 0.2);
+
+        }
+
+
+        .how-to-card:hover::before {
+
+            opacity: 0.1;
+
+        }
+
+
+        .how-to-number {
+
+            font-family: 'Orbitron', monospace;
+
+            font-size: 3rem;
+
+            font-weight: 900;
+
+            margin-bottom: 20px;
+
+            background: var(--gradient-2);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+
+        .how-to-title {
+
+            font-size: 1.5rem;
+
+            font-weight: 700;
+
+            margin-bottom: 15px;
+
+            color: var(--text-primary);
+
+        }
+
+
+        .how-to-description {
+
+            color: var(--text-secondary);
+
+            line-height: 1.6;
+
+        }
+
+
+        /* Popular Games Section */
+
+        .popular-games-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+
+            gap: 30px;
+
+        }
+
+
+        .popular-game-card {
+
+            background: rgba(255, 255, 255, 0.05);
+
+            backdrop-filter: blur(10px);
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            transition: all 0.3s;
+
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            cursor: pointer;
+
+        }
+
+
+        [data-theme="light"] .popular-game-card {
+
+            background: rgba(0, 0, 0, 0.05);
+
+            border: 1px solid rgba(0, 0, 0, 0.1);
+
+        }
+
+
+        .popular-game-card:hover {
+
+            transform: translateY(-10px);
+
+            box-shadow: 0 20px 40px rgba(255, 0, 110, 0.2);
+
+        }
+
+
+        .popular-game-image {
+
+            width: 100%;
+
+            height: 200px;
+
+            object-fit: cover;
+
+            transition: transform 0.5s;
+
+        }
+
+
+        .popular-game-card:hover .popular-game-image {
+
+            transform: scale(1.1);
+
+        }
+
+
+        .popular-game-info {
+
+            padding: 25px;
+
+        }
+
+
+        .popular-game-title {
+
+            font-size: 1.5rem;
+
+            font-weight: 700;
+
+            margin-bottom: 10px;
+
+            color: var(--text-primary);
+
+        }
+
+
+        .popular-game-genre {
+
+            color: var(--accent);
+
+            margin-bottom: 15px;
+
+            font-weight: 600;
+
+        }
+
+
+        .popular-game-description {
+
+            color: var(--text-secondary);
+
+            margin-bottom: 20px;
+
+            line-height: 1.6;
+
+        }
+
+
+        .popular-game-stats {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 20px;
+
+            color: var(--text-muted);
+
+        }
+
+
+        .popular-game-btn {
+
+            width: 100%;
+
+            padding: 12px;
+
+            background: var(--gradient-2);
+
+            color: white;
+
+            border: none;
+
+            border-radius: 10px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: all 0.3s;
+
+            text-decoration: none;
+
+            text-align: center;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+        }
+
+
+        .popular-game-btn:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 10px 20px rgba(255, 0, 110, 0.3);
+
+        }
+
+
+        /* Features Section */
+
+        .features-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 30px;
+
+        }
+
+
+        .feature-card {
+
+            background: rgba(255, 255, 255, 0.05);
+
+            backdrop-filter: blur(10px);
+
+            border-radius: 20px;
+
+            padding: 40px 30px;
+
+            text-align: center;
+
+            transition: all 0.3s;
+
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        [data-theme="light"] .feature-card {
+
+            background: rgba(0, 0, 0, 0.05);
+
+            border: 1px solid rgba(0, 0, 0, 0.1);
+
+        }
+
+
+        .feature-card::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: var(--gradient-2);
+
+            opacity: 0;
+
+            transition: opacity 0.3s;
+
+            z-index: -1;
+
+        }
+
+
+        .feature-card:hover {
+
+            transform: translateY(-10px);
+
+            box-shadow: 0 20px 40px rgba(255, 0, 110, 0.2);
+
+        }
+
+
+        .feature-card:hover::before {
+
+            opacity: 0.1;
+
+        }
+
+
+        .feature-icon {
+
+            font-size: 3rem;
+
+            margin-bottom: 20px;
+
+            background: var(--gradient-2);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+
+        .feature-title {
+
+            font-size: 1.5rem;
+
+            font-weight: 700;
+
+            margin-bottom: 15px;
+
+            color: var(--text-primary);
+
+        }
+
+
+        .feature-description {
+
+            color: var(--text-secondary);
+
+            line-height: 1.6;
+
+        }
+
+
+        /* Timeline Section */
+
+        .timeline {
+
+            position: relative;
+
+            max-width: 800px;
+
+            margin: 0 auto;
+
+        }
+
+
+        .timeline::before {
+
+            content: '';
+
+            position: absolute;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: 2px;
+
+            height: 100%;
+
+            background: var(--gradient-2);
+
+        }
+
+
+        .timeline-item {
+
+            position: relative;
+
+            margin-bottom: 50px;
+
+        }
+
+
+        .timeline-content {
+
+            position: relative;
+
+            width: calc(50% - 40px);
+
+            padding: 30px;
+
+            background: rgba(255, 255, 255, 0.05);
+
+            backdrop-filter: blur(10px);
+
+            border-radius: 15px;
+
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+        }
+
+
+        [data-theme="light"] .timeline-content {
+
+            background: rgba(0, 0, 0, 0.05);
+
+            border: 1px solid rgba(0, 0, 0, 0.1);
+
+        }
+
+
+        .timeline-item:nth-child(odd) .timeline-content {
+
+            left: 0;
+
+        }
+
+
+        .timeline-item:nth-child(even) .timeline-content {
+
+            left: calc(50% + 40px);
+
+        }
+
+
+        .timeline-date {
+
+            position: absolute;
+
+            top: 30px;
+
+            width: 80px;
+
+            height: 80px;
+
+            background: var(--gradient-2);
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-family: 'Orbitron', monospace;
+
+            font-weight: 900;
+
+            font-size: 1.2rem;
+
+            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.3);
+
+            color: white;
+
+        }
+
+
+        .timeline-item:nth-child(odd) .timeline-date {
+
+            right: -40px;
+
+        }
+
+
+        .timeline-item:nth-child(even) .timeline-date {
+
+            left: -40px;
+
+        }
+
+
+        .timeline-title {
+
+            font-size: 1.5rem;
+
+            font-weight: 700;
+
+            margin-bottom: 10px;
+
+            color: var(--text-primary);
+
+        }
+
+
+        .timeline-description {
+
+            color: var(--text-secondary);
+
+            line-height: 1.6;
+
+        }
+
+
+        /* Games Section */
+
+        .games-filter {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            margin-bottom: 40px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .filter-btn {
+
+            padding: 10px 25px;
+
+            background: rgba(255, 255, 255, 0.1);
+
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            border-radius: 50px;
+
+            color: var(--text-primary);
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: all 0.3s;
+
+        }
+
+
+        [data-theme="light"] .filter-btn {
+
+            background: rgba(0, 0, 0, 0.1);
+
+            border: 1px solid rgba(0, 0, 0, 0.2);
+
+            color: var(--text-primary);
+
+        }
+
+
+        .filter-btn.active,
+
+        .filter-btn:hover {
+
+            background: var(--gradient-2);
+
+            border-color: transparent;
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 10px 20px rgba(255, 0, 110, 0.3);
+
+        }
+
+
+        .games-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+
+            gap: 30px;
+
+        }
+
+
+        .game-card {
+
+            background: rgba(255, 255, 255, 0.05);
+
+            backdrop-filter: blur(10px);
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            transition: all 0.3s;
+
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            cursor: pointer;
+
+        }
+
+
+        [data-theme="light"] .game-card {
+
+            background: rgba(0, 0, 0, 0.05);
+
+            border: 1px solid rgba(0, 0, 0, 0.1);
+
+        }
+
+
+        .game-card:hover {
+
+            transform: translateY(-10px);
+
+            box-shadow: 0 20px 40px rgba(255, 0, 110, 0.2);
+
+        }
+
+
+        .game-image {
+
+            width: 100%;
+
+            height: 200px;
+
+            object-fit: cover;
+
+            transition: transform 0.5s;
+
+        }
+
+
+        .game-card:hover .game-image {
+
+            transform: scale(1.1);
+
+        }
+
+
+        .game-info {
+
+            padding: 25px;
+
+        }
+
+
+        .game-title {
+
+            font-size: 1.5rem;
+
+            font-weight: 700;
+
+            margin-bottom: 10px;
+
+            color: var(--text-primary);
+
+        }
+
+
+        .game-creator {
+
+            display: flex;
+
+            align-items: center;
+
+            color: var(--accent);
+
+            margin-bottom: 15px;
+
+            font-weight: 600;
+
+        }
+
+
+        .student-avatar {
+
+            width: 55px;
+
+            height: 55px;
+
+            border-radius: 50%;
+
+            margin-right: 10px;
+
+            border: 2px solid var(--accent);
+
+        }
+
+
+        .game-description {
+
+            color: var(--text-secondary);
+
+            margin-bottom: 20px;
+
+            line-height: 1.6;
+
+        }
+
+
+        .game-stats {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 20px;
+
+            color: var(--text-muted);
+
+        }
+
+
+        .game-btn {
+
+            width: 100%;
+
+            padding: 12px;
+
+            background: var(--gradient-2);
+
+            color: white;
+
+            border: none;
+
+            border-radius: 10px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: all 0.3s;
+
+            text-decoration: none;
+
+            text-align: center;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+        }
+
+
+        .game-btn:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 10px 20px rgba(255, 0, 110, 0.3);
+
+        }
+
+
+        /* Stats Section */
+
+        .stats-section {
+
+            background: var(--gradient-2);
+
+            padding: 100px 20px;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        .stats-section::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,122.7C1248,107,1344,85,1392,74.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+
+            background-size: cover;
+
+            opacity: 0.1;
+
+        }
+
+
+        .stats-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+            gap: 40px;
+
+            text-align: center;
+
+        }
+
+
+        .stat-item {
+
+            position: relative;
+
+        }
+
+
+        .stat-number {
+
+            font-family: 'Orbitron', monospace;
+
+            font-size: 3.5rem;
+
+            font-weight: 900;
+
+            margin-bottom: 10px;
+
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+
+            color: white;
+
+        }
+
+
+        .stat-label {
+
+            font-size: 1.2rem;
+
+            font-weight: 600;
+
+            color: white;
+
+        }
+
+
+        /* FAQ Section */
+
+        .faq-container {
+
+            max-width: 800px;
+
+            margin: 0 auto;
+
+        }
+
+
+        .faq-item {
+
+            background: rgba(255, 255, 255, 0.05);
+
+            backdrop-filter: blur(10px);
+
+            border-radius: 15px;
+
+            margin-bottom: 20px;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+        }
+
+
+        [data-theme="light"] .faq-item {
+
+            background: rgba(0, 0, 0, 0.05);
+
+            border: 1px solid rgba(0, 0, 0, 0.1);
+
+        }
+
+
+        .faq-question {
+
+            padding: 25px;
+
+            cursor: pointer;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            font-weight: 700;
+
+            font-size: 1.1rem;
+
+            transition: all 0.3s;
+
+            color: var(--text-primary);
+
+        }
+
+
+        .faq-question:hover {
+
+            background: rgba(255, 255, 255, 0.05);
+
+        }
+
+
+        [data-theme="light"] .faq-question:hover {
+
+            background: rgba(0, 0, 0, 0.05);
+
+        }
+
+
+        .faq-icon {
+
+            transition: transform 0.3s;
+
+            color: var(--text-primary);
+
+        }
+
+
+        .faq-answer {
+
+            max-height: 0;
+
+            overflow: hidden;
+
+            transition: max-height 0.3s ease;
+
+            padding: 0 25px;
+
+        }
+
+
+        .faq-item.active .faq-answer {
+
+            max-height: 500px;
+
+            padding: 0 25px 25px;
+
+        }
+
+
+        .faq-item.active .faq-icon {
+
+            transform: rotate(180deg);
+
+        }
+
+
+        .faq-answer p {
+
+            color: var(--text-secondary);
+
+            line-height: 1.6;
+
+        }
+
+
+        /* Newsletter Section */
+
+        .newsletter {
+
+            background: rgba(255, 255, 255, 0.05);
+
+            backdrop-filter: blur(10px);
+
+            padding: 80px 20px;
+
+            text-align: center;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+        }
+
+
+        [data-theme="light"] .newsletter {
+
+            background: #ffffff !important;
+
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+        }
+
+
+        .newsletter-title {
+
+            font-family: 'Orbitron', monospace;
+
+            font-size: 2.5rem;
+
+            font-weight: 900;
+
+            margin-bottom: 20px;
+
+            background: var(--gradient-2);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+
+        .newsletter-description {
+
+            font-size: 1.2rem;
+
+            color: var(--text-secondary);
+
+            max-width: 600px;
+
+            margin: 0 auto 40px;
+
+        }
+
+
+        .newsletter-form {
+
+            display: flex;
+
+            max-width: 500px;
+
+            margin: 0 auto;
+
+            background: rgba(255, 255, 255, 0.1);
+
+            border-radius: 50px;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+        }
+
+
+        [data-theme="light"] .newsletter-form {
+
+            background: rgba(0, 0, 0, 0.05);
+
+            border: 1px solid rgba(0, 0, 0, 0.2);
+
+        }
+
+
+        .newsletter-input {
+
+            flex: 1;
+
+            padding: 15px 25px;
+
+            background: transparent;
+
+            border: none;
+
+            color: var(--text-primary);
+
+            font-size: 1rem;
+
+        }
+
+
+        .newsletter-input::placeholder {
+
+            color: var(--text-muted);
+
+        }
+
+
+        .newsletter-btn {
+
+            padding: 15px 30px;
+
+            background: var(--gradient-2);
+
+            color: white;
+
+            border: none;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: all 0.3s;
+
+        }
+
+
+        .newsletter-btn:hover {
+
+            transform: scale(1.05);
+
+        }
+
+
+        /* Footer */
+
+        footer {
+
+            background: var(--primary);
+
+            padding: 80px 20px 40px;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+        }
+
+
+        [data-theme="light"] footer {
+
+            background: #ffffff !important;
+
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+        }
+
+
+        .footer-content {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 40px;
+
+            margin-bottom: 60px;
+
+        }
+
+
+        .footer-column h3 {
+
+            font-family: 'Orbitron', monospace;
+
+            font-size: 1.5rem;
+
+            font-weight: 900;
+
+            margin-bottom: 25px;
+
+            background: var(--gradient-2);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+
+        .footer-column p {
+
+            color: var(--text-secondary);
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .footer-links {
+
+            list-style: none;
+
+        }
+
+
+        .footer-links li {
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .footer-links a {
+
+            color: var(--text-secondary);
+
+            text-decoration: none;
+
+            transition: all 0.3s;
+
+            display: inline-block;
+
+        }
+
+
+        .footer-links a:hover {
+
+            color: var(--secondary);
+
+            transform: translateX(5px);
+
+        }
+
+
+        .footer-social {
+
+            display: flex;
+
+            gap: 15px;
+
+            margin-top: 20px;
+
+        }
+
+
+        .footer-social a {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 40px;
+
+            height: 40px;
+
+            background: rgba(255, 255, 255, 0.1);
+
+            border-radius: 50%;
+
+            color: var(--text-primary);
+
+            transition: all 0.3s;
+
+        }
+
+
+        [data-theme="light"] .footer-social a {
+
+            background: rgba(0, 0, 0, 0.1);
+
+            color: var(--text-primary);
+
+        }
+
+
+        .footer-social a:hover {
+
+            background: var(--gradient-2);
+
+            transform: translateY(-5px);
+
+        }
+
+
+        .footer-bottom {
+
+            text-align: center;
+
+            padding-top: 40px;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+            color: var(--text-muted);
+
+        }
+
+
+        [data-theme="light"] .footer-bottom {
+
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+            color: var(--text-muted);
+
+        }
+
+
+        /* Animations */
+
+        @keyframes fadeInUp {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateY(30px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+
+            }
+
+        }
+
+
+        @keyframes fadeInLeft {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateX(-30px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateX(0);
+
+            }
+
+        }
+
+
+        @keyframes fadeInRight {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateX(30px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateX(0);
+
+            }
+
+        }
+
+
+        .fade-in {
+
+            opacity: 0;
+
+            transform: translateY(20px);
+
+            transition: opacity 0.6s ease, transform 0.6s ease;
+
+        }
+
+
+        .fade-in.active {
+
+            opacity: 1;
+
+            transform: translateY(0);
+
+        }
+
+
+        /* Responsive */
+
+        @media (max-width: 992px) {
+
+            .about-content {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            
+
+            .timeline::before {
+
+                left: 30px;
+
+            }
+
+            
+
+            .timeline-content {
+
+                width: calc(100% - 80px);
+
+                left: 80px !important;
+
+            }
+
+            
+
+            .timeline-date {
+
+                left: 30px !important;
+
+                right: auto !important;
+
+            }
+
+        }
+
+
+        @media (max-width: 768px) {
+
+            nav {
+
+                padding: 15px 20px;
+
+            }
+
+            
+
+            .nav-links {
+
+                display: none;
+
+            }
+
+            
+
+            .hero-title {
+
+                font-size: 2.5rem;
+
+            }
+
+            
+
+            .hero-subtitle {
+
+                font-size: 1.2rem;
+
+            }
+
+            
+
+            .hero-buttons {
+
+                flex-direction: column;
+
+                align-items: center;
+
+            }
+
+            
+
+            .btn {
+
+                width: 100%;
+
+                max-width: 300px;
+
+            }
+
+        }
+
+
+        /* Scroll Progress Bar */
+
+        .scroll-progress {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 0%;
+
+            height: 3px;
+
+            background: var(--gradient-2);
+
+            z-index: 1001;
+
+            transition: width 0.1s;
+
+        }
+
+
+        /* Back to Top */
+
+        .back-to-top {
+
+            position: fixed;
+
+            bottom: 30px;
+
+            right: 30px;
+
+            width: 50px;
+
+            height: 50px;
+
+            background: var(--gradient-2);
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: white;
+
+            font-size: 1.2rem;
+
+            cursor: pointer;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition: all 0.3s;
+
+            z-index: 1000;
+
+            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.3);
+
+        }
+
+
+        .back-to-top.show {
+
+            opacity: 1;
+
+            visibility: visible;
+
+        }
+
+
+        .back-to-top:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 15px 40px rgba(255, 0, 110, 0.4);
+
+        }
+
+
+        /* Game Modal */
+
+        .modal {
+
+            display: none;
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.8);
+
+            z-index: 10000;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+        }
+
+
+        .modal-content {
+
+            background: var(--primary);
+
+            border-radius: 20px;
+
+            max-width: 90vw;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            position: relative;
+
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+        }
+
+
+        [data-theme="light"] .modal-content {
+
+            background: var(--light);
+
+            border: 1px solid rgba(0, 0, 0, 0.1);
+
+        }
+
+
+        .modal-close {
+
+            position: absolute;
+
+            top: 20px;
+
+            right: 20px;
+
+            font-size: 2rem;
+
+            color: var(--text-primary);
+
+            cursor: pointer;
+
+            transition: all 0.3s;
+
+            z-index: 10001;
+
+        }
+
+
+        .modal-close:hover {
+
+            color: var(--secondary);
+
+            transform: rotate(90deg);
+
+        }
+
+
+        .modal-image {
+
+            width: 100%;
+
+            height: auto;
+
+            object-fit: cover;
+
+            border-radius: 20px 20px 0 0;
+
+            max-height: 60vh;
+
+        }
+
+
+        .modal-video-container {
+
+            position: relative;
+
+            width: 100%;
+
+            border-radius: 20px 20px 0 0;
+
+            overflow: hidden;
+
+            background: #000;
+
+        }
+
+
+        .modal-video {
+
+            width: 100%;
+
+            height: auto;
+
+            display: block;
+
+            border-radius: 20px 20px 0 0;
+
+        }
+
+
+        .modal-body {
+
+            padding: 30px;
+
+        }
+
+
+        .modal-title {
+
+            font-family: 'Orbitron', monospace;
+
+            font-size: 2rem;
+
+            font-weight: 900;
+
+            margin-bottom: 15px;
+
+            background: var(--gradient-2);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+
+        .modal-creator {
+
+            color: var(--accent);
+
+            font-size: 1.1rem;
+
+            margin-bottom: 20px;
+
+            font-weight: 600;
+
+        }
+
+
+        .modal-description {
+
+            color: var(--text-secondary);
+
+            line-height: 1.8;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .modal-stats {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .modal-stat {
+
+            text-align: center;
+
+            padding: 20px;
+
+            background: rgba(255, 255, 255, 0.05);
+
+            border-radius: 15px;
+
+        }
+
+
+        [data-theme="light"] .modal-stat {
+
+            background: rgba(0, 0, 0, 0.05);
+
+        }
+
+
+        .modal-stat-value {
+
+            font-family: 'Orbitron', monospace;
+
+            font-size: 1.5rem;
+
+            font-weight: 900;
+
+            margin-bottom: 5px;
+
+            color: var(--text-primary);
+
+        }
+
+
+        .modal-stat-label {
+
+            color: var(--text-secondary);
+
+            font-size: 0.9rem;
+
+        }
+
+
+        .modal-btn {
+
+            width: 100%;
+
+            padding: 15px;
+
+            background: var(--gradient-2);
+
+            color: white;
+
+            border: none;
+
+            border-radius: 10px;
+
+            font-weight: 700;
+
+            font-size: 1.1rem;
+
+            cursor: pointer;
+
+            transition: all 0.3s;
+
+            text-decoration: none;
+
+            text-align: center;
+
+            display: block;
+
+        }
+
+
+        .modal-btn:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.3);
+
+        }
+
+
+        /* Maker Modal Styles */
+
+        .maker-modal-content {
+
+            max-width: 600px;
+
+        }
+
+
+        .maker-info {
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .maker-info h3 {
+
+            font-size: 1.5rem;
+
+            margin-bottom: 15px;
+
+            color: var(--accent);
+
+        }
+
+
+        .maker-info p {
+
+            margin-bottom: 10px;
+
+            line-height: 1.6;
+
+            color: var(--text-secondary);
+
+        }
+
+
+        .maker-info a {
+
+            color: var(--secondary);
+
+            text-decoration: none;
+
+            transition: color 0.3s;
+
+        }
+
+
+        .maker-info a:hover {
+
+            color: var(--accent);
+
+            text-decoration: underline;
+
+        }
+
+
+        .maker-social {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+
+            margin-top: 20px;
+
+        }
+
+
+        .maker-social a {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 12px 20px;
+
+            background: rgba(255, 255, 255, 0.1);
+
+            border-radius: 50px;
+
+            color: var(--text-primary);
+
+            text-decoration: none;
+
+            transition: all 0.3s;
+
+        }
+
+
+        [data-theme="light"] .maker-social a {
+
+            background: rgba(0, 0, 0, 0.1);
+
+            color: var(--text-primary);
+
+        }
+
+
+        .maker-social a:hover {
+
+            background: var(--gradient-2);
+
+            transform: translateY(-3px);
+
+        }
+
+    </style>
+
+</head>
+
+<body data-theme="light">
+
+    <!-- Loader -->
+
+    <div class="loader-wrapper" id="loader">
+
+        <div class="loader">
+
+            <div class="loader-circle"></div>
+
+            <div class="loader-circle"></div>
+
+            <div class="loader-circle"></div>
+
+            <div class="loader-text">LOADING</div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Scroll Progress -->
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+
+    <!-- Cursor -->
+
+    <div class="cursor"></div>
+
+    <div class="cursor-follower"></div>
+
+
+    <!-- Animated Background -->
+
+    <div class="bg-animation">
+
+        <span></span>
+
+        <span></span>
+
+        <span></span>
+
+        <span></span>
+
+        <span></span>
+
+        <span></span>
+
+        <span></span>
+
+        <span></span>
+
+        <span></span>
+
+        <span></span>
+
+    </div>
+
+
+    <!-- Floating Lines Background -->
+
+    <div class="line-animation">
+
+        <div class="line"></div>
+
+        <div class="line"></div>
+
+        <div class="line"></div>
+
+        <div class="line"></div>
+
+        <div class="line"></div>
+
+        <div class="line"></div>
+
+        <div class="line"></div>
+
+        <div class="line"></div>
+
+        <div class="line"></div>
+
+        <div class="line"></div>
+
+    </div>
+
+
+    <!-- Navigation -->
+
+    <nav id="navbar">
+
+        <div class="nav-container">
+
+            <a href="#" class="logo">
+
+                <i class="fab fa-roblox"></i> ROBLOX HUB by BVM
+
+            </a>
+
+            <ul class="nav-links">
+
+                <li><a href="#home">Home</a></li>
+
+                <li><a href="#about">About</a></li>
+
+                <li><a href="#howto">How To</a></li>
+
+                <li><a href="#popular">Popular Games</a></li>
+
+                <li><a href="#features">Features</a></li>
+
+                <li><a href="#history">History</a></li>
+
+                <li><a href="#games">Student Games</a></li>
+
+                <li><a href="#stats">Stats</a></li>
+
+                <li><a href="#faq">FAQ</a></li>
+
+            </ul>
+
+            <button class="theme-toggle" id="themeToggle">
+
+                <i class="fas fa-sun"></i>
+
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Hero Section -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1 class="hero-title">ROBLOX INFORMATION HUB by BVM</h1>
+
+            <p class="hero-subtitle">Your gateway to the amazing world of Roblox - Learn, Create, and Play!</p>
+
+            <div class="hero-buttons">
+
+                <a href="#about" class="btn btn-primary">Explore Now</a>
+
+                <a href="#games" class="btn btn-secondary">Play Games</a>
+
+            </div>
+
+            <div class="social-links">
+
+                <a href="https://www.youtube.com/@Awakening_AS" target="_blank" class="social-link">
+
+                    <i class="fab fa-youtube"></i>
+
+                    <span>YouTube</span>
+
+                </a>
+
+                <a href="https://www.instagram.com/Arjun_Sachchar" target="_blank" class="social-link">
+
+                    <i class="fab fa-instagram"></i>
+
+                    <span>Instagram</span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- About Section -->
+
+    <section class="section" id="about">
+
+        <div class="container">
+
+            <div class="section-header fade-in">
+
+                <h2 class="section-title">What is Roblox?</h2>
+
+                <p class="section-subtitle">Discover the amazing world of Roblox and how it's changing the gaming landscape</p>
+
+            </div>
+
+            <div class="about-content">
+
+                <div class="about-text fade-in">
+
+                    <p>Roblox is a global online platform that brings people together through play. It allows users to create, share, and play games and experiences with friends and millions of other people across various devices.</p>
+
+                    <p>What makes Roblox unique is that everything in the platform is designed and built by members of the community. Roblox is designed for users of all ages, with a particular focus on teens and young adults who are interested in gaming, creation, and social interaction.</p>
+
+                    <p>The platform combines elements of gaming, social media, and content creation, providing a space where users can not only play games but also create their own experiences using Roblox Studio.</p>
+
+                </div>
+
+                <div class="about-image fade-in">
+
+                    <img src="C:\Users\N9.DESKTOP-F6T2HQ2\Downloads\ROBLOX_AI_IMAGE.jfif" alt="Roblox Platform">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- How To Section -->
+
+    <section class="section" id="howto">
+
+        <div class="container">
+
+            <div class="section-header fade-in">
+
+                <h2 class="section-title">How To Get Started</h2>
+
+                <p class="section-subtitle">Learn the basics of Roblox and start your journey</p>
+
+            </div>
+
+            <div class="how-to-grid">
+
+                <div class="how-to-card fade-in">
+
+                    <div class="how-to-number">01</div>
+
+                    <h3 class="how-to-title">Create an Account</h3>
+
+                    <p class="how-to-description">Sign up for a free Roblox account using your email address. Choose a unique username and secure password to get started on your Roblox journey.</p>
+
+                </div>
+
+                <div class="how-to-card fade-in">
+
+                    <div class="how-to-number">02</div>
+
+                    <h3 class="how-to-title">Customize Your Avatar</h3>
+
+                    <p class="how-to-description">Personalize your character with clothing, accessories, and animations. Express your style and stand out in the Roblox universe!</p>
+
+                </div>
+
+                <div class="how-to-card fade-in">
+
+                    <div class="how-to-number">03</div>
+
+                    <h3 class="how-to-title">Add Friends</h3>
+
+                    <p class="how-to-description">Connect with other players by sending friend requests. Click on a player's profile and select "Add Friend" to build your Roblox social network.</p>
+
+                </div>
+
+                <div class="how-to-card fade-in">
+
+                    <div class="how-to-number">04</div>
+
+                    <h3 class="how-to-title">Join Games</h3>
+
+                    <p class="how-to-description">Browse through millions of games and experiences. Click "Play" to join instantly or add games to your favorites for later.</p>
+
+                </div>
+
+                <div class="how-to-card fade-in">
+
+                    <div class="how-to-number">05</div>
+
+                    <h3 class="how-to-title">Create Your Own Games</h3>
+
+                    <p class="how-to-description">Download Roblox Studio for free and start creating your own games using Lua scripting. Share your creations with the world!</p>
+
+                </div>
+
+                <div class="how-to-card fade-in">
+
+                    <div class="how-to-number">06</div>
+
+                    <h3 class="how-to-title">Earn Robux</h3>
+
+                    <p class="how-to-description">Create and sell virtual items, game passes, or premium experiences to earn Robux, Roblox's virtual currency.</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Popular Games Section -->
+
+    <section class="section" id="popular">
+
+        <div class="container">
+
+            <div class="section-header fade-in">
+
+                <h2 class="section-title">Popular Roblox Games</h2>
+
+                <p class="section-subtitle">Discover the most played games on Roblox right now</p>
+
+            </div>
+
+            <div class="popular-games-grid">
+
+                <div class="popular-game-card fade-in" onclick="openModal('Adopt Me!', 'DreamCraft', 'Raise and dress cute pets, decorate your house, and play with friends in this family-friendly game!', 'https://wallpapers.com/images/featured-full/adopt-me-pictures-t4p05praajzlabc5.jpg', 'https://www.roblox.com/games/920587237/Adopt-Me')">
+
+                    <img src="https://tr.rbxcdn.com/180DAY-ef31d156d91e4ee3deee873ac67a3b6c/768/432/Image/Webp/noFilter" alt="Adopt Me" class="popular-game-image">
+
+                    <div class="popular-game-info">
+
+                        <h3 class="popular-game-title">Adopt Me!</h3>
+
+                        <p class="popular-game-genre">Role-playing</p>
+
+                        <p class="popular-game-description">Raise and dress cute pets, decorate your house, and play with friends!</p>
+
+                        <div class="popular-game-stats">
+
+                            <span><i class="fas fa-star"></i> 4.8</span>
+
+                            <span><i class="fas fa-heart"></i> 95% Like</span>
+
+                        </div>
+
+                        <a href="https://www.roblox.com/games/920587237/Adopt-Me" target="_blank" class="popular-game-btn" onclick="event.stopPropagation()">
+
+                            <i class="fas fa-play"></i> Play Now
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="popular-game-card fade-in" onclick="openModal('Brookhaven RP', 'Wolfpaq', 'Roleplay in a massive city with houses, vehicles, and jobs. Live your dream life in Brookhaven!', 'https://pbs.twimg.com/profile_banners/315886394/1750679522/600x200', 'https://www.roblox.com/games/4924922222/Brookhaven-RP')">
+
+                    <img src="https://tr.rbxcdn.com/180DAY-a9261f0b921799fc8e5d1b1951d230e0/768/432/Image/Webp/noFilter" alt="Brookhaven RP" class="popular-game-image">
+
+                    <div class="popular-game-info">
+
+                        <h3 class="popular-game-title">Brookhaven RP</h3>
+
+                        <p class="popular-game-genre">Role-playing</p>
+
+                        <p class="popular-game-description">Roleplay in a massive city with houses, vehicles, and jobs!</p>
+
+                        <div class="popular-game-stats">
+
+                            <span><i class="fas fa-star"></i> 4.7</span>
+
+                            <span><i class="fas fa-heart"></i> 93% Like</span>
+
+                        </div>
+
+                        <a href="https://www.roblox.com/games/4924922222/Brookhaven-RP" target="_blank" class="popular-game-btn" onclick="event.stopPropagation()">
+
+                            <i class="fas fa-play"></i> Play Now
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="popular-game-card fade-in" onclick="openModal('Tower of Hell', 'YXCeptional Productions', 'Climb a massive tower with unique obstacles. Race against others or practice your skills!', 'https://tr.rbxcdn.com/180DAY-bbf77e96d2fb7c31af7f37d07df52a62/768/432/Image/Webp/noFilter', 'https://www.roblox.com/games/1962086868/Tower-of-Hell')">
+
+                    <img src="https://tr.rbxcdn.com/180DAY-20a372111085c33de1e64004e4dca1d8/768/432/Image/Webp/noFilter" alt="Tower of Hell" class="popular-game-image">
+
+                    <div class="popular-game-info">
+
+                        <h3 class="popular-game-title">Tower of Hell</h3>
+
+                        <p class="popular-game-genre">Obby</p>
+
+                        <p class="popular-game-description">Climb a massive tower with unique obstacles and challenges!</p>
+
+                        <div class="popular-game-stats">
+
+                            <span><i class="fas fa-star"></i> 4.6</span>
+
+                            <span><i class="fas fa-heart"></i> 91% Like</span>
+
+                        </div>
+
+                        <a href="https://www.roblox.com/games/1962086868/Tower-of-Hell" target="_blank" class="popular-game-btn" onclick="event.stopPropagation()">
+
+                            <i class="fas fa-play"></i> Play Now
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="popular-game-card fade-in" onclick="openModal('Fisch!', 'Fisch Developers', 'Catch the Biggest Fish/Shark and get Rich by Selling them.', 'https://tr.rbxcdn.com/180DAY-6f7ecb307a1935ba97776b7092d21c09/768/432/Image/Webp/noFilter', 'https://www.roblox.com/games/16732694052/Fisch-SOON')">
+
+                    <img src="https://cdn.mos.cms.futurecdn.net/SGLeoCZgYx9u2NidcmaxHb-650-80.jpg.webp" alt="Fisch" class="popular-game-image">
+
+                    <div class="popular-game-info">
+
+                        <h3 class="popular-game-title">Fisch!</h3>
+
+                        <p class="popular-game-genre">Fishing</p>
+
+                        <p class="popular-game-description">Catch the Biggest Fish/Shark and get Rich by Selling them.</p>
+
+                        <div class="popular-game-stats">
+
+                            <span><i class="fas fa-star"></i> 4.4</span>
+
+                            <span><i class="fas fa-heart"></i> 87% Like</span>
+
+                        </div>
+
+                        <a href="https://www.roblox.com/games/16732694052/Fisch-SOON" target="_blank" class="popular-game-btn" onclick="event.stopPropagation()">
+
+                            <i class="fas fa-play"></i> Play Now
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="popular-game-card fade-in" onclick="openModal('Murder Mystery 2', 'Nikilis', 'Work together to solve murders or be the killer in this suspenseful mystery game!', 'https://tr.rbxcdn.com/180DAY-9712501c7ff29c2243d0fd3bfb47d93d/768/432/Image/Webp/noFilter', 'https://www.roblox.com/games/142823291/Murder-Mystery-2')">
+
+                    <img src="https://tr.rbxcdn.com/180DAY-c929c9ba9069190914f60bbfe47b6cb9/768/432/Image/Webp/noFilter" alt="Murder Mystery 2" class="popular-game-image">
+
+                    <div class="popular-game-info">
+
+                        <h3 class="popular-game-title">Murder Mystery 2</h3>
+
+                        <p class="popular-game-genre">Horror</p>
+
+                        <p class="popular-game-description">Work together to solve murders or be the killer in this mystery game!</p>
+
+                        <div class="popular-game-stats">
+
+                            <span><i class="fas fa-star"></i> 4.6</span>
+
+                            <span><i class="fas fa-heart"></i> 90% Like</span>
+
+                        </div>
+
+                        <a href="https://www.roblox.com/games/142823291/Murder-Mystery-2" target="_blank" class="popular-game-btn" onclick="event.stopPropagation()">
+
+                            <i class="fas fa-play"></i> Play Now
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Features Section -->
+
+    <section class="section" id="features">
+
+        <div class="container">
+
+            <div class="section-header fade-in">
+
+                <h2 class="section-title">Roblox Studio Features</h2>
+
+                <p class="section-subtitle">Powerful tools that empower creators to build their dream experiences</p>
+
+            </div>
+
+            <div class="features-grid">
+
+                <div class="feature-card fade-in">
+
+                    <div class="feature-icon">
+
+                        <i class="fas fa-cube"></i>
+
+                    </div>
+
+                    <h3 class="feature-title">3D Building</h3>
+
+                    <p class="feature-description">Create stunning 3D environments with intuitive building tools and a vast library of assets.</p>
+
+                </div>
+
+                <div class="feature-card fade-in">
+
+                    <div class="feature-icon">
+
+                        <i class="fas fa-paint-brush"></i>
+
+                    </div>
+
+                    <h3 class="feature-title">Design & Texturing</h3>
+
+                    <p class="feature-description">Customize every aspect of your world with advanced design and texturing tools.</p>
+
+                </div>
+
+                <div class="feature-card fade-in">
+
+                    <div class="feature-icon">
+
+                        <i class="fas fa-code"></i>
+
+                    </div>
+
+                    <h3 class="feature-title">Scripting</h3>
+
+                    <p class="feature-description">Bring your creations to life with Lua scripting to create interactive gameplay elements.</p>
+
+                </div>
+
+                <div class="feature-card fade-in">
+
+                    <div class="feature-icon">
+
+                        <i class="fas fa-users"></i>
+
+                    </div>
+
+                    <h3 class="feature-title">Multiplayer</h3>
+
+                    <p class="feature-description">Build engaging multiplayer experiences that connect players from around the world.</p>
+
+                </div>
+
+                <div class="feature-card fade-in">
+
+                    <div class="feature-icon">
+
+                        <i class="fas fa-store"></i>
+
+                    </div>
+
+                    <h3 class="feature-title">Monetization</h3>
+
+                    <p class="feature-description">Earn Robux by creating engaging experiences and selling virtual items.</p>
+
+                </div>
+
+                <div class="feature-card fade-in">
+
+                    <div class="feature-icon">
+
+                        <i class="fas fa-chart-line"></i>
+
+                    </div>
+
+                    <h3 class="feature-title">Analytics</h3>
+
+                    <p class="feature-description">Track your game's performance with detailed analytics and player insights.</p>
+
+                </div>
+
+                <div class="feature-card fade-in">
+
+                    <div class="feature-icon">
+
+                        <i class="fas fa-expand-arrows-alt"></i>
+
+                    </div>
+
+                    <h3 class="feature-title">Scale Tool</h3>
+
+                    <p class="feature-description">Resize objects with precision using the Scale tool. Adjust dimensions proportionally or independently along each axis to create perfect structures and environments.</p>
+
+                </div>
+
+                <div class="feature-card fade-in">
+
+                    <div class="feature-icon">
+
+                        <i class="fas fa-arrows-alt"></i>
+
+                    </div>
+
+                    <h3 class="feature-title">Move Tool</h3>
+
+                    <p class="feature-description">Position objects exactly where you want them with the Move tool. Drag items freely or use specific coordinates for precise placement in your game world.</p>
+
+                </div>
+
+                <div class="feature-card fade-in">
+
+                    <div class="feature-icon">
+
+                        <i class="fas fa-sync-alt"></i>
+
+                    </div>
+
+                    <h3 class="feature-title">Rotate Tool</h3>
+
+                    <p class="feature-description">Rotate objects along any axis with the Rotate tool. Create dynamic angles and orientations for your game elements with intuitive rotation controls.</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- History Section -->
+
+    <section class="section" id="history">
+
+        <div class="container">
+
+            <div class="section-header fade-in">
+
+                <h2 class="section-title">History of Roblox</h2>
+
+                <p class="section-subtitle">From a small project to a global phenomenon</p>
+
+            </div>
+
+            <div class="timeline">
+
+                <div class="timeline-item fade-in">
+
+                    <div class="timeline-date">1989</div>
+
+                    <div class="timeline-content">
+
+                        <h3 class="timeline-title">The Beginning</h3>
+
+                        <p class="timeline-description">Founder David Baszucki creates a physics simulation called "Interactive Physics" that would later inspire Roblox.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="timeline-item fade-in">
+
+                    <div class="timeline-date">2004</div>
+
+                    <div class="timeline-content">
+
+                        <h3 class="timeline-title">Development Starts</h3>
+
+                        <p class="timeline-description">Development of Roblox begins under the name "DynaBlocks". The founders, David Baszucki and Erik Cassel, work on creating a platform that combines physics, building, and scripting.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="timeline-item fade-in">
+
+                    <div class="timeline-date">2005</div>
+
+                    <div class="timeline-content">
+
+                        <h3 class="timeline-title">Name Change</h3>
+
+                        <p class="timeline-description">The name changes from "DynaBlocks" to "Roblox" - a portmanteau of "robots" and "blocks". The beta version of Roblox is launched.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="timeline-item fade-in">
+
+                    <div class="timeline-date">2006</div>
+
+                    <div class="timeline-content">
+
+                        <h3 class="timeline-title">Official Launch</h3>
+
+                        <p class="timeline-description">Roblox officially launches to the public. The platform starts gaining traction with its first games and users.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="timeline-item fade-in">
+
+                    <div class="timeline-date">2021</div>
+
+                    <div class="timeline-content">
+
+                        <h3 class="timeline-title">Going Public</h3>
+
+                        <p class="timeline-description">Roblox goes public with a direct listing on the New York Stock Exchange under the ticker RBLX.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Games Section -->
+
+    <section class="section" id="games">
+
+        <div class="container">
+
+            <div class="section-header fade-in">
+
+                <h2 class="section-title">Student-Created Games</h2>
+
+                <p class="section-subtitle">Amazing games developed by talented Birla Vidya Mandir Nainital students</p>
+
+            </div>
+
+            <div class="games-filter fade-in">
+
+                <button class="filter-btn active" data-filter="all">All Games</button>
+
+                <button class="filter-btn" data-filter="adventure">Adventure</button>
+
+                <button class="filter-btn" data-filter="simulation">Simulation</button>
+
+                <button class="filter-btn" data-filter="educational">Educational</button>
+
+                <button class="filter-btn" data-filter="sports">Sports</button>
+
+            </div>
+
+            <div class="games-grid">
+
+                <!-- Game 1 -->
+
+                <div class="game-card fade-in" data-category="adventure" onclick="openModal('Neon Rush Obby!', 'Arjun Sachchar', 'An exciting obby game where player Rushes to the top & Earns coins to the way up.', 'https://cdn.hibervr.com/thumbnails/564645/22cd4b3e53136511e5cd4e4369adfb09.1280.jpg', 'https://www.roblox.com/games/81649161518351/Neon-Rush-Obby')">
+
+                    <img src="https://cdn.hibervr.com/thumbnails/564645/22cd4b3e53136511e5cd4e4369adfb09.1280.jpg" alt="Neon Rush Obby game screenshot" class="game-image">
+
+                    <div class="game-info">
+
+                        <h3 class="game-title">Neon Rush Obby!</h3>
+
+                        <div class="game-creator">
+
+                            <img src="C:\Users\N9.DESKTOP-F6T2HQ2\Downloads\photos-20251007T132226Z-1-001\photos\CLASS-9C\Arjun Sachchar.JPG" alt="Arjun Sachchar" class="student-avatar">
+
+                            Created by: Arjun Sachchar
+
+                        </div>
+
+                        <p class="game-description">An exciting obby game where player Rushes to the top & Earns coins to the way up.</p>
+
+                        <div class="game-stats">
+
+                            <span><i class="fas fa-star"></i> 5.0</span>
+
+                            <span><i class="fas fa-heart"></i> 100% Like</span>
+
+                        </div>
+
+                        <a href="https://www.roblox.com/games/81649161518351/Neon-Rush-Obby" target="_blank" class="game-btn" onclick="event.stopPropagation()">
+
+                            <i class="fas fa-play"></i> Play Now
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                
+
+                <!-- Game 2 -->
+
+                <div class="game-card fade-in" data-category="simulation" onclick="openModal('Millionaire Tycoon!', 'Dev Goyal', 'A Fun Tycoon to Relax and dominate over other Business Tycoons.', 'https://www.touchtapplay.com/wp-content/uploads/2021/09/millionaire-empire.jpg?w=1200', 'https://www.roblox.com/games/91563170030694/money-makers-tycoon-NEW')">
+
+                    <img src="https://tr.rbxcdn.com/180DAY-bc3a4c0ec5c9b1bdd1d42d391fd40e9f/768/432/Image/Webp/noFilter" alt="Millionaire Tycoon game screenshot" class="game-image">
+
+                    <div class="game-info">
+
+                        <h3 class="game-title">Millionaire Tycoon!</h3>
+
+                        <div class="game-creator">
+
+                            <img src="C:\Users\N9.DESKTOP-F6T2HQ2\Downloads\photos-20251007T132226Z-1-001\photos\CLASS-9C\Dev Goyal.JPG" alt="Dev Goyal" class="student-avatar">
+
+                            Created by: Dev Goyal
+
+                        </div>
+
+                        <p class="game-description">A Fun Tycoon to Relax and dominate over other Business Tycoons.</p>
+
+                        <div class="game-stats">
+
+                            <span><i class="fas fa-star"></i> 5.0</span>
+
+                            <span><i class="fas fa-heart"></i> 100% Like</span>
+
+                        </div>
+
+                        <a href="https://www.roblox.com/games/91563170030694/money-makers-tycoon-NEW" target="_blank" class="game-btn" onclick="event.stopPropagation()">
+
+                            <i class="fas fa-play"></i> Play Now
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                
+
+                <!-- Game 3 -->
+
+                <div class="game-card fade-in" data-category="simulation" onclick="openModal('Fun Obby!', 'Granth Gupta', 'A Game where you compete other Players for the Ultimate Victory.', 'https://tr.rbxcdn.com/180DAY-79b14eb95c42504875f2da8cddcd56f7/768/432/Image/Webp/noFilter', 'https://www.roblox.com/games/122697327657223/fun-obby')">
+
+                    <img src="https://cdn.hibervr.com/thumbnails/73211/42e0da36e9e938c51eaf27764cb13bdd.1280.jpg" alt="Fun Obby game screenshot" class="game-image">
+
+                    <div class="game-info">
+
+                        <h3 class="game-title">Fun Obby!</h3>
+
+                        <div class="game-creator">
+
+                            <img src="C:\Users\N9.DESKTOP-F6T2HQ2\Downloads\photos-20251007T132226Z-1-001\photos\CLASS-9C\Granth Gupta.JPG" alt="Granth Gupta" class="student-avatar">
+
+                            Created by: Granth Gupta
+
+                        </div>
+
+                        <p class="game-description">A Game where you compete other Players for the Ultimate Victory.</p>
+
+                        <div class="game-stats">
+
+                            <span><i class="fas fa-star"></i> 5.0</span>
+
+                            <span><i class="fas fa-heart"></i> 100% Like</span>
+
+                        </div>
+
+                        <a href="https://www.roblox.com/games/122697327657223/fun-obby" target="_blank" class="game-btn" onclick="event.stopPropagation()">
+
+                            <i class="fas fa-play"></i> Play Now
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                
+
+                <!-- Game 4 - MiniGames with video -->
+
+                <div class="game-card fade-in" data-category="educational" onclick="openModal('MiniGames!', 'Arjun Sachchar', 'Multiple MiniGames to kick out the Boring Word.', 'C:\\Users\\N9.DESKTOP-F6T2HQ2\\Downloads\\Mini games2.png', 'https://www.roblox.com/games/94500504970697/HoneyComb', 'video', 'C:\\Users\\N9.DESKTOP-F6T2HQ2\\Downloads\\minigames_video.mp4')">
+
+                    <img src="C:\Users\N9.DESKTOP-F6T2HQ2\Downloads\Mini games2.png" alt="MiniGames screenshot" class="game-image">
+
+                    <div class="game-info">
+
+                        <h3 class="game-title">MiniGames!</h3>
+
+                        <div class="game-creator">
+
+                            <img src="C:\Users\N9.DESKTOP-F6T2HQ2\Downloads\photos-20251007T132226Z-1-001\photos\CLASS-9C\Arjun Sachchar.JPG" alt="Arjun Sachchar" class="student-avatar">
+
+                            Created by: Arjun Sachchar
+
+                        </div>
+
+                        <p class="game-description">Multiple MiniGames to kick out the Word Boring. 3 Minigames- Racing, Falling Tiles & Obby.</p>
+
+                        <div class="game-stats">
+
+                            <span><i class="fas fa-star"></i> 5.0</span>
+
+                            <span><i class="fas fa-heart"></i> 100% Like</span>
+
+                        </div>
+
+                        <a href="https://www.roblox.com/games/94500504970697/HoneyComb" target="_blank" class="game-btn" onclick="event.stopPropagation()">
+
+                            <i class="fas fa-play"></i> Play Now
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                
+
+                <!-- Game 5 -->
+
+                <div class="game-card fade-in" data-category="adventure" onclick="openModal('Escape the Ball!', 'Arjun Sachchar', 'Quietly escape 3 Evil Spiky Balls through a Portal & Enjoy your Freedom.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn_3gIc5AaOnpR5_kYCiLIbz9UP7nMT_GfwQ&s', 'https://www.roblox.com/games/113650281854470/Escape-the-Ball-NEW')">
+
+                    <img src="C:\Users\N9.DESKTOP-F6T2HQ2\Downloads\Escape the ball made by arjun sachchar.png" alt="Escape the Ball game screenshot" class="game-image">
+
+                    <div class="game-info">
+
+                        <h3 class="game-title">Escape the Ball!</h3>
+
+                        <div class="game-creator">
+
+                            <img src="C:\Users\N9.DESKTOP-F6T2HQ2\Downloads\photos-20251007T132226Z-1-001\photos\CLASS-9C\Arjun Sachchar.JPG" alt="Arjun Sachchar" class="student-avatar">
+
+                            Created by: Arjun Sachchar
+
+                        </div>
+
+                        <p class="game-description">Quietly escape 3 Evil Spiky Balls through a Portal & Enjoy your Freedom.</p>
+
+                        <div class="game-stats">
+
+                            <span><i class="fas fa-star"></i> 5.0</span>
+
+                            <span><i class="fas fa-heart"></i> 100% Like</span>
+
+                        </div>
+
+                        <a href="https://www.roblox.com/games/113650281854470/Escape-the-Ball-NEW" target="_blank" class="game-btn" onclick="event.stopPropagation()">
+
+                            <i class="fas fa-play"></i> Play Now
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                
+
+                <!-- Game 6 - Super Power Fighting Simulator with image instead of video -->
+
+                <div class="game-card fade-in" data-category="simulation" onclick="openModal('Super Power Fighting Simulator!', 'Arjun Sachchar', 'Use Super Powers to fight against each other. More Updates would be released soon.', 'C:\\Users\\N9.DESKTOP-F6T2HQ2\\Downloads\\SPFS2.png', 'https://www.roblox.com/games/90923354485542/Super-Powers-NPC')">
+
+                    <img src="C:\Users\N9.DESKTOP-F6T2HQ2\Downloads\SPFS2.png" alt="Super Power Fighting Simulator screenshot" class="game-image">
+
+                    <div class="game-info">
+
+                        <h3 class="game-title">Super Power Fighting Simulator!</h3>
+
+                        <div class="game-creator">
+
+                            <img src="C:\Users\N9.DESKTOP-F6T2HQ2\Downloads\photos-20251007T132226Z-1-001\photos\CLASS-9C\Arjun Sachchar.JPG" alt="Arjun Sachchar" class="student-avatar">
+
+                            Created by: Arjun Sachchar
+
+                        </div>
+
+                        <p class="game-description">Use Super Powers to fight against each other. More Updates would be released soon.</p>
+
+                        <div class="game-stats">
+
+                            <span><i class="fas fa-star"></i> 5.0</span>
+
+                            <span><i class="fas fa-heart"></i> 100% Like</span>
+
+                        </div>
+
+                        <a href="https://www.roblox.com/games/90923354485542/Super-Powers-NPC" target="_blank" class="game-btn" onclick="event.stopPropagation()">
+
+                            <i class="fas fa-play"></i> Play Now
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                
+
+                <!-- Game 7 -->
+
+                <div class="game-card fade-in" data-category="educational" onclick="openModal('Super Hero Tycoon!', 'Arjun Sachchar', 'Build your superhero empire and become the ultimate hero in this exciting tycoon game!', 'https://resource.supercheats.com/library/supercheats/740w/2024/1727774103heropowertycoonheader.webp', 'https://www.roblox.com/games/112543764639175/Super-Hero-Tycoon')">
+
+                    <img src="https://www.gameskinny.com/wp-content/uploads/2024/01/roblox-super-hero-tycoon-2-codes.jpg" alt="Super Hero Tycoon screenshot" class="game-image">
+
+                    <div class="game-info">
+
+                        <h3 class="game-title">Super Hero Tycoon!</h3>
+
+                        <div class="game-creator">
+
+                            <img src="C:\Users\N9.DESKTOP-F6T2HQ2\Downloads\photos-20251007T132226Z-1-001\photos\CLASS-9C\Arjun Sachchar.JPG" alt="Arjun Sachchar" class="student-avatar">
+
+                            Created by: Arjun Sachchar
+
+                        </div>
+
+                        <p class="game-description">Build your superhero empire and become the ultimate hero in this exciting tycoon game!</p>
+
+                        <div class="game-stats">
+
+                            <span><i class="fas fa-star"></i> 5.0</span>
+
+                            <span><i class="fas fa-heart"></i> 100% Like</span>
+
+                        </div>
+
+                        <a href="https://www.roblox.com/games/112543764639175/Super-Hero-Tycoon" target="_blank" class="game-btn" onclick="event.stopPropagation()">
+
+                            <i class="fas fa-play"></i> Play Now
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Game 8 -->
+
+                <div class="game-card fade-in" data-category="educational" onclick="openModal('The Hider & The Seeker!', 'Agrim Consul', 'A Basic hiding and Catching Game, The OG Hide & Seek.', 'https://tr.rbxcdn.com/180DAY-47d2b9ace8e536841c72a4d7b4b784b6/768/432/Image/Webp/noFilter', 'https://www.roblox.com/games/112543764639175/Super-Hero-Tycoon')">
+
+                    <img src="https://tr.rbxcdn.com/180DAY-bc5240ffda26d1fdbd8f6f209a463102/768/432/Image/Webp/noFilter" alt="Hider & The Seeker Screenshot" class="game-image">
+
+                    <div class="game-info">
+
+                        <h3 class="game-title">The Hider & The Seeker!</h3>
+
+                        <div class="game-creator">
+
+                            <img src="C:\Users\N9.DESKTOP-F6T2HQ2\Downloads\1000044314.jpg" alt="Agrim Consul" class="student-avatar">
+
+                            Created by: Agrim Consul
+
+                        </div>
+
+                        <p class="game-description">A Basic hiding and Catching Game, The OG Hide & Seek.</p>
+
+                        <div class="game-stats">
+
+                            <span><i class="fas fa-star"></i> 5.0</span>
+
+                            <span><i class="fas fa-heart"></i> 100% Like</span>
+
+                        </div>
+
+                        <a href="https://www.roblox.com/games/127224098805456/Hide-And-Seek-NOT-FOR-BEGINNERS" target="_blank" class="game-btn" onclick="event.stopPropagation()">
+
+                            <i class="fas fa-play"></i> Play Now
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Game 9 -->
+
+                <div class="game-card fade-in" data-category="sports" onclick="openModal('Hide & Seek', 'Arjun Sachchar', 'Be a Hider or a Seeker, the old tradional Hide & Seek Game.', 'https://tr.rbxcdn.com/180DAY-04d1dcec4892bdac79e9188d8e161511/768/432/Image/Webp/noFilter', 'https://www.roblox.com/games/127224098805456/Hide-And-Seek-NOT-FOR-BEGINNERS')">
+
+                    <img src="https://media.beano.com/uploads/2022/03/thumb.jpg" alt="Hide & Seek game screenshot" class="game-image">
+
+                    <div class="game-info">
+
+                        <h3 class="game-title">Hide & Seek</h3>
+
+                        <div class="game-creator">
+
+                            <img src="C:\Users\N9.DESKTOP-F6T2HQ2\Downloads\photos-20251007T132226Z-1-001\photos\CLASS-9C\Arjun Sachchar.JPG" alt="Arjun Sachchar" class="student-avatar">
+
+                            Created by: Arjun Sachchar
+
+                        </div>
+
+                        <p class="game-description">Be a Hider or a Seeker, the old tradional Hide & Seek Game.</p>
+
+                        <div class="game-stats">
+
+                            <span><i class="fas fa-star"></i> 5.0</span>
+
+                            <span><i class="fas fa-heart"></i> 100% Like</span>
+
+                        </div>
+
+                        <a href="https://www.roblox.com/games/111323554756519/Hide-Seek" target="_blank" class="game-btn" onclick="event.stopPropagation()">
+
+                            <i class="fas fa-play"></i> Play Now
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Stats Section -->
+
+    <section class="stats-section" id="stats">
+
+        <div class="container">
+
+            <div class="section-header fade-in">
+
+                <h2 class="section-title" style="color: white;">Roblox by the Numbers</h2>
+
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">Impressive statistics that show Roblox's growth and impact</p>
+
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-item fade-in">
+
+                    <div class="stat-number" data-target="70">0</div>
+
+                    <div class="stat-label">Daily Active Users (Millions)</div>
+
+                </div>
+
+                <div class="stat-item fade-in">
+
+                    <div class="stat-number" data-target="200">0</div>
+
+                    <div class="stat-label">Monthly Active Users (Millions)</div>
+
+                </div>
+
+                <div class="stat-item fade-in">
+
+                    <div class="stat-number" data-target="40">0</div>
+
+                    <div class="stat-label">Games & Experiences (Millions)</div>
+
+                </div>
+
+                <div class="stat-item fade-in">
+
+                    <div class="stat-number" data-target="100">0</div>
+
+                    <div class="stat-label">Countries</div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FAQ Section -->
+
+    <section class="section" id="faq">
+
+        <div class="container">
+
+            <div class="section-header fade-in">
+
+                <h2 class="section-title">Frequently Asked Questions</h2>
+
+                <p class="section-subtitle">Find answers to common questions about Roblox</p>
+
+            </div>
+
+            <div class="faq-container">
+
+                <div class="faq-item fade-in">
+
+                    <div class="faq-question">
+
+                        What is Roblox and how does it work?
+
+                        <i class="fas fa-chevron-down faq-icon"></i>
+
+                    </div>
+
+                    <div class="faq-answer">
+
+                        <p>Roblox is an online platform and game creation system that allows users to design and play games created by other users. It works by providing a suite of tools through Roblox Studio where developers can create games using the Lua programming language. Players can then access these games through the Roblox website or mobile apps.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="faq-item fade-in">
+
+                    <div class="faq-question">
+
+                        Is Roblox safe for children?
+
+                        <i class="fas fa-chevron-down faq-icon"></i>
+
+                    </div>
+
+                    <div class="faq-answer">
+
+                        <p>Roblox has several safety features in place, including chat filters, content moderation, and parental controls. Parents can restrict chat features, set spending limits, and monitor their child's activity. However, as with any online platform, it's important for parents to stay involved and educate their children about online safety.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="faq-item fade-in">
+
+                    <div class="faq-question">
+
+                        How can I start creating games on Roblox?
+
+                        <i class="fas fa-chevron-down faq-icon"></i>
+
+                    </div>
+
+                    <div class="faq-answer">
+
+                        <p>To start creating games on Roblox, download Roblox Studio for free from the official website. There are many tutorials available on the Roblox Developer Hub and YouTube to help you learn the basics. Start with simple projects and gradually work your way up to more complex games as you gain experience.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="faq-item fade-in">
+
+                    <div class="faq-question">
+
+                        What programming language does Roblox use?
+
+                        <i class="fas fa-chevron-down faq-icon"></i>
+
+                    </div>
+
+                    <div class="faq-answer">
+
+                        <p>Roblox primarily uses Lua, specifically a modified version called Lua, for scripting within games. Luau maintains compatibility with standard Lua while providing additional features and optimizations. For the platform itself, Roblox uses C++ for the core engine and various other languages for different components like the website and mobile apps.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="faq-item fade-in">
+
+                    <div class="faq-question">
+
+                        How do I add friends on Roblox?
+
+                        <i class="fas fa-chevron-down faq-icon"></i>
+
+                    </div>
+
+                    <div class="faq-answer">
+
+                        <p>To add friends on Roblox, follow these steps: 1) Find the player you want to add as a friend in a game or on their profile page, 2) Click on their username or profile picture, 3) Select the "Add Friend" button on their profile, 4) Wait for them to accept your friend request. Once accepted, you'll be able to see when they're online, join their games, and chat with them.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Newsletter Section -->
+
+    <section class="newsletter">
+
+        <div class="container">
+
+            <h2 class="newsletter-title">Stay Updated</h2>
+
+            <p class="newsletter-description">Subscribe to our newsletter for the latest Roblox news, updates, and development tips</p>
+
+            <form class="newsletter-form" id="newsletterForm">
+
+                <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <div class="footer-column">
+
+                    <h3>Roblox Hub by BVM</h3>
+
+                    <p>Your comprehensive guide to the world of Roblox, created by Birla Vidya Mandir students.</p>
+
+                    <div class="footer-social">
+
+                        <a href="https://www.youtube.com/@Awakening_AS" target="_blank"><i class="fab fa-youtube"></i></a>
+
+                        <a href="https://www.instagram.com/Arjun_Sachchar" target="_blank"><i class="fab fa-instagram"></i></a>
+
+                        <a href="https://www.facebook.com/roblox" target="_blank"><i class="fab fa-facebook-f"></i></a>
+
+                        <a href="https://twitter.com/roblox" target="_blank"><i class="fab fa-twitter"></i></a>
+
+                        <a href="https://discord.com/invite/roblox" target="_blank"><i class="fab fa-discord"></i></a>
+
+                    </div>
+
+                </div>
+
+                <div class="footer-column">
+
+                    <h3>Quick Links</h3>
+
+                    <ul class="footer-links">
+
+                        <li><a href="#home">Home</a></li>
+
+                        <li><a href="#about">About Roblox</a></li>
+
+                        <li><a href="#howto">How To</a></li>
+
+                        <li><a href="#popular">Popular Games</a></li>
+
+                        <li><a href="#features">Features</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="footer-column">
+
+                    <h3>Resources</h3>
+
+                    <ul class="footer-links">
+
+                        <li><a href="https://developer.roblox.com/" target="_blank">Developer Hub</a></li>
+
+                        <li><a href="https://developer.roblox.com/en-us/learn-tutorials" target="_blank">Tutorials</a></li>
+
+                        <li><a href="https://developer.roblox.com/en-us/api-reference" target="_blank">Documentation</a></li>
+
+                        <li><a href="https://devforum.roblox.com/" target="_blank">Community</a></li>
+
+                        <li><a href="https://www.roblox.com/support" target="_blank">Support</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="footer-column">
+
+                    <h3>Contact</h3>
+
+                    <ul class="footer-links">
+
+                        <li><a href="mailto:info@robloxhub.com">info@robloxhub.com</a></li>
+
+                        <li><a href="mailto:feedback@robloxhub.com?subject=Feedback">Submit Feedback</a></li>
+
+                        <li><a href="mailto:support@robloxhub.com?subject=Issue%20Report">Report Issue</a></li>
+
+                        <li><a href="#" onclick="openLegalModal('privacy')">Privacy Policy</a></li>
+
+                        <li><a href="#" onclick="openLegalModal('terms')">Terms of Service</a></li>
+
+                        <li><a href="#" onclick="openMakerModal()">Maker of the Website</a></li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+
+                <p>&copy; 2025 Roblox Information Hub by BVM | This is an educational website about Roblox and is not affiliated with Roblox Corporation.</p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Back to Top -->
+
+    <div class="back-to-top" id="backToTop">
+
+        <i class="fas fa-arrow-up"></i>
+
+    </div>
+
+
+    <!-- Game Modal -->
+
+    <div class="modal" id="gameModal">
+
+        <div class="modal-content">
+
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+
+            <div id="modalMediaContainer"></div>
+
+            <div class="modal-body">
+
+                <h2 id="modalTitle" class="modal-title"></h2>
+
+                <p id="modalCreator" class="modal-creator"></p>
+
+                <p id="modalDescription" class="modal-description"></p>
+
+                <div class="modal-stats">
+
+                    <div class="modal-stat">
+
+                        <div class="modal-stat-value">5.0</div>
+
+                        <div class="modal-stat-label">Rating</div>
+
+                    </div>
+
+                    <div class="modal-stat">
+
+                        <div class="modal-stat-value">100%</div>
+
+                        <div class="modal-stat-label">Likes</div>
+
+                    </div>
+
+                    <div class="modal-stat">
+
+                        <div class="modal-stat-value">1K+</div>
+
+                        <div class="modal-stat-label">Plays</div>
+
+                    </div>
+
+                </div>
+
+                <a id="modalBtn" href="#" target="_blank" class="modal-btn">
+
+                    <i class="fas fa-play"></i> Play Now
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Legal Modal -->
+
+    <div class="modal" id="legalModal">
+
+        <div class="modal-content">
+
+            <span class="modal-close" onclick="closeLegalModal()">&times;</span>
+
+            <div class="modal-body">
+
+                <h2 id="legalModalTitle" class="modal-title"></h2>
+
+                <div id="legalModalContent"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Maker Modal -->
+
+    <div class="modal" id="makerModal">
+
+        <div class="modal-content maker-modal-content">
+
+            <span class="modal-close" onclick="closeMakerModal()">&times;</span>
+
+            <div class="modal-body">
+
+                <h2 class="modal-title">Maker of the Website</h2>
+
+                <div class="maker-info">
+
+                    <h3><i class="fas fa-user"></i> Arjun Sachchar</h3>
+
+                    <p><strong>Email Addresses:</strong></p>
+
+                    <p>School: <a href="mailto:225032@birlavidyamandir.com">225032@birlavidyamandir.com</a></p>
+
+                    <p>Main: <a href="mailto:shadowkingarjun@gmail.com">shadowkingarjun@gmail.com</a></p>
+
+                    <p>Alternative: <a href="mailto:shadowkingboom@gmail.com">shadowkingboom@gmail.com</a></p>
+
+                    
+
+                    <h3><i class="fas fa-link"></i> Social Links</h3>
+
+                    <div class="maker-social">
+
+                        <a href="https://www.youtube.com/@Awakening_AS" target="_blank">
+
+                            <i class="fab fa-youtube"></i> YouTube: @Awakening_AS
+
+                        </a>
+
+                        <a href="https://www.instagram.com/Arjun_Sachchar" target="_blank">
+
+                            <i class="fab fa-instagram"></i> Instagram: @Arjun_Sachchar
+
+                        </a>
+
+                        <a href="https://www.facebook.com/ArjunSachchar" target="_blank">
+
+                            <i class="fab fa-facebook"></i> Facebook: @ArjunSachchar
+
+                        </a>
+
+                    </div>
+
+                    
+
+                    <h3><i class="fab fa-roblox"></i> Roblox Accounts</h3>
+
+                    <p>Main: shadow_kingarjun</p>
+
+                    <p>Alternative: ArjunHyper99</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // Theme Toggle
+
+        const themeToggle = document.getElementById('themeToggle');
+
+        const body = document.body;
+
+        const icon = themeToggle.querySelector('i');
+
+        
+
+        // Check for saved theme preference or default to light mode
+
+        const currentTheme = localStorage.getItem('theme') || 'light';
+
+        if (currentTheme === 'dark') {
+
+            body.removeAttribute('data-theme');
+
+            icon.classList.remove('fa-sun');
+
+            icon.classList.add('fa-moon');
+
+        } else {
+
+            body.setAttribute('data-theme', 'light');
+
+            icon.classList.remove('fa-moon');
+
+            icon.classList.add('fa-sun');
+
+        }
+
+        
+
+        themeToggle.addEventListener('click', () => {
+
+            const theme = body.getAttribute('data-theme');
+
+            if (theme === 'light') {
+
+                body.removeAttribute('data-theme');
+
+                icon.classList.remove('fa-sun');
+
+                icon.classList.add('fa-moon');
+
+                localStorage.setItem('theme', 'dark');
+
+            } else {
+
+                body.setAttribute('data-theme', 'light');
+
+                icon.classList.remove('fa-moon');
+
+                icon.classList.add('fa-sun');
+
+                localStorage.setItem('theme', 'light');
+
+            }
+
+        });
+
+
+        // Loader
+
+        window.addEventListener('load', () => {
+
+            setTimeout(() => {
+
+                document.getElementById('loader').classList.add('hidden');
+
+            }, 1500);
+
+        });
+
+
+        // Cursor
+
+        const cursor = document.querySelector('.cursor');
+
+        const cursorFollower = document.querySelector('.cursor-follower');
+
+
+        document.addEventListener('mousemove', (e) => {
+
+            cursor.style.left = e.clientX + 'px';
+
+            cursor.style.top = e.clientY + 'px';
+
+            
+
+            setTimeout(() => {
+
+                cursorFollower.style.left = e.clientX + 'px';
+
+                cursorFollower.style.top = e.clientY + 'px';
+
+            }, 100);
+
+        });
+
+
+        // Scroll Progress
+
+        window.addEventListener('scroll', () => {
+
+            const scrollProgress = document.getElementById('scrollProgress');
+
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+
+            scrollProgress.style.width = scrollPercent + '%';
+
+        });
+
+
+        // Sticky Navigation
+
+        window.addEventListener('scroll', () => {
+
+            const navbar = document.getElementById('navbar');
+
+            if (window.scrollY > 100) {
+
+                navbar.classList.add('sticky');
+
+            } else {
+
+                navbar.classList.remove('sticky');
+
+            }
+
+        });
+
+
+        // Smooth Scrolling
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+            anchor.addEventListener('click', function (e) {
+
+                e.preventDefault();
+
+                const target = document.querySelector(this.getAttribute('href'));
+
+                if (target) {
+
+                    window.scrollTo({
+
+                        top: target.offsetTop - 80,
+
+                        behavior: 'smooth'
+
+                    });
+
+                }
+
+            });
+
+        });
+
+
+        // Back to Top
+
+        const backToTop = document.getElementById('backToTop');
+
+        
+
+        window.addEventListener('scroll', () => {
+
+            if (window.pageYOffset > 300) {
+
+                backToTop.classList.add('show');
+
+            } else {
+
+                backToTop.classList.remove('show');
+
+            }
+
+        });
+
+        
+
+        backToTop.addEventListener('click', () => {
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: 'smooth'
+
+            });
+
+        });
+
+
+        // Fade In Animation
+
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        
+
+        const fadeInOnScroll = () => {
+
+            fadeElements.forEach(element => {
+
+                const elementTop = element.getBoundingClientRect().top;
+
+                const elementBottom = element.getBoundingClientRect().bottom;
+
+                
+
+                if (elementTop < window.innerHeight && elementBottom > 0) {
+
+                    element.classList.add('active');
+
+                }
+
+            });
+
+        };
+
+        
+
+        window.addEventListener('scroll', fadeInOnScroll);
+
+        fadeInOnScroll();
+
+
+        // Game Filter
+
+        const filterBtns = document.querySelectorAll('.filter-btn');
+
+        const gameCards = document.querySelectorAll('.game-card');
+
+        
+
+        filterBtns.forEach(btn => {
+
+            btn.addEventListener('click', () => {
+
+                // Update active button
+
+                filterBtns.forEach(b => b.classList.remove('active'));
+
+                btn.classList.add('active');
+
+                
+
+                // Filter games
+
+                const filter = btn.getAttribute('data-filter');
+
+                
+
+                gameCards.forEach(card => {
+
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+
+                        card.style.display = 'block';
+
+                        setTimeout(() => {
+
+                            card.style.opacity = '1';
+
+                            card.style.transform = 'scale(1)';
+
+                        }, 10);
+
+                    } else {
+
+                        card.style.opacity = '0';
+
+                        card.style.transform = 'scale(0.8)';
+
+                        setTimeout(() => {
+
+                            card.style.display = 'none';
+
+                        }, 300);
+
+                    }
+
+                });
+
+            });
+
+        });
+
+
+        // FAQ Accordion
+
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        
+
+        faqItems.forEach(item => {
+
+            const question = item.querySelector('.faq-question');
+
+            
+
+            question.addEventListener('click', () => {
+
+                // Toggle active class
+
+                item.classList.toggle('active');
+
+                
+
+                // Close other items
+
+                faqItems.forEach(otherItem => {
+
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+
+                        otherItem.classList.remove('active');
+
+                    }
+
+                });
+
+            });
+
+        });
+
+
+        // Newsletter Form
+
+        const newsletterForm = document.getElementById('newsletterForm');
+
+        
+
+        newsletterForm.addEventListener('submit', (e) => {
+
+            e.preventDefault();
+
+            
+
+            const email = newsletterForm.querySelector('.newsletter-input').value;
+
+            
+
+            // Show success message
+
+            const successMsg = document.createElement('div');
+
+            successMsg.style.position = 'fixed';
+
+            successMsg.style.bottom = '20px';
+
+            successMsg.style.right = '20px';
+
+            successMsg.style.background = 'var(--gradient-2)';
+
+            successMsg.style.color = 'white';
+
+            successMsg.style.padding = '15px 25px';
+
+            successMsg.style.borderRadius = '10px';
+
+            successMsg.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+
+            successMsg.style.zIndex = '1000';
+
+            successMsg.textContent = `Thank you! We've subscribed ${email} to our newsletter.`;
+
+            
+
+            document.body.appendChild(successMsg);
+
+            
+
+            // Reset form
+
+            newsletterForm.reset();
+
+            
+
+            // Remove message after 5 seconds
+
+            setTimeout(() => {
+
+                successMsg.remove();
+
+            }, 5000);
+
+        });
+
+
+        // Game Modal
+
+        function openModal(title, creator, description, imageUrl, gameUrl, mediaType, videoUrl) {
+
+            document.getElementById('modalTitle').textContent = title;
+
+            document.getElementById('modalCreator').textContent = 'Created by: ' + creator;
+
+            document.getElementById('modalDescription').textContent = description;
+
+            document.getElementById('modalBtn').href = gameUrl;
+
+            
+
+            const mediaContainer = document.getElementById('modalMediaContainer');
+
+            mediaContainer.innerHTML = '';
+
+            
+
+            if (mediaType === 'video' && videoUrl) {
+
+                // Create video container
+
+                const videoContainer = document.createElement('div');
+
+                videoContainer.className = 'modal-video-container';
+
+                
+
+                const video = document.createElement('video');
+
+                video.className = 'modal-video';
+
+                video.src = videoUrl;
+
+                video.autoplay = true;
+
+                video.loop = true;
+
+                video.muted = true;
+
+                video.playsInline = true;
+
+                video.controls = true;
+
+                
+
+                videoContainer.appendChild(video);
+
+                mediaContainer.appendChild(videoContainer);
+
+            } else {
+
+                // Create image
+
+                const img = document.createElement('img');
+
+                img.src = imageUrl;
+
+                img.alt = title + ' screenshot';
+
+                img.className = 'modal-image';
+
+                mediaContainer.appendChild(img);
+
+            }
+
+            
+
+            document.getElementById('gameModal').style.display = 'flex';
+
+        }
+
+        
+
+        function closeModal() {
+
+            const modal = document.getElementById('gameModal');
+
+            const video = modal.querySelector('.modal-video');
+
+            
+
+            if (video) {
+
+                video.pause();
+
+            }
+
+            
+
+            modal.style.display = 'none';
+
+        }
+
+        
+
+        // Close modal when clicking outside
+
+        window.addEventListener('click', (e) => {
+
+            const modal = document.getElementById('gameModal');
+
+            if (e.target === modal) {
+
+                closeModal();
+
+            }
+
+        });
+
+
+        // Legal Modal
+
+        function openLegalModal(type) {
+
+            const modal = document.getElementById('legalModal');
+
+            const title = document.getElementById('legalModalTitle');
+
+            const content = document.getElementById('legalModalContent');
+
+            
+
+            if (type === 'privacy') {
+
+                title.textContent = 'Privacy Policy';
+
+                content.innerHTML = `
+
+                    <h3>Effective Date: January 1, 2025</h3>
+
+                    <p>Welcome to Roblox Information Hub by BVM. Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.</p>
+
+                    
+
+                    <h4>Information We Collect</h4>
+
+                    <p>We may collect information that identifies, relates to, describes, or could be linked to you.</p>
+
+                    
+
+                    <h4>How We Use Your Information</h4>
+
+                    <p>We use the information we collect to provide, maintain, and improve our services.</p>
+
+                    
+
+                    <h4>Sharing Your Information</h4>
+
+                    <p>We do not sell your personal information. We may share your information with third parties only in the ways that are described in this Privacy Policy.</p>
+
+                    
+
+                    <h4>Your Rights</h4>
+
+                    <p>You have the right to access, update, or delete your personal information.</p>
+
+                    
+
+                    <h4>Contact Us</h4>
+
+                    <p>If you have any questions about this Privacy Policy, please contact us at info@robloxhub.com.</p>
+
+                `;
+
+            } else if (type === 'terms') {
+
+                title.textContent = 'Terms of Service';
+
+                content.innerHTML = `
+
+                    <h3>Effective Date: January 1, 2025</h3>
+
+                    <p>Welcome to Roblox Information Hub by BVM. These Terms of Service govern your use of our website.</p>
+
+                    
+
+                    <h4>Acceptance of Terms</h4>
+
+                    <p>By accessing or using our website, you agree to be bound by these Terms.</p>
+
+                    
+
+                    <h4>Use License</h4>
+
+                    <p>Permission is granted to temporarily download one copy of the materials on Roblox Information Hub by BVM for personal, non-commercial transitory viewing only.</p>
+
+                    
+
+                    <h4>Disclaimer</h4>
+
+                    <p>The materials on Roblox Information Hub by BVM are provided on an 'as is' basis. We make no warranties, expressed or implied.</p>
+
+                    
+
+                    <h4>Limitations</h4>
+
+                    <p>In no event shall Roblox Information Hub by BVM be liable for any damages arising from the use of this website.</p>
+
+                    
+
+                    <h4>Accuracy of Materials</h4>
+
+                    <p>The materials appearing on our website could include technical, typographical, or photographic errors. We do not warrant that any of the materials on its website are accurate, complete, or current.</p>
+
+                    
+
+                    <h4>Links</h4>
+
+                    <p>We have not reviewed all of the sites linked to our website and are not responsible for the contents of any such linked site.</p>
+
+                    
+
+                    <h4>Modifications</h4>
+
+                    <p>We may revise these terms of service for its website at any time without notice.</p>
+
+                    
+
+                    <h4>Governing Law</h4>
+
+                    <p>These terms and conditions are governed by and construed in accordance with the laws of India.</p>
+
+                `;
+
+            }
+
+            
+
+            modal.style.display = 'flex';
+
+        }
+
+        
+
+        function closeLegalModal() {
+
+            document.getElementById('legalModal').style.display = 'none';
+
+        }
+
+        
+
+        // Close legal modal when clicking outside
+
+        window.addEventListener('click', (e) => {
+
+            const legalModal = document.getElementById('legalModal');
+
+            if (e.target === legalModal) {
+
+                closeLegalModal();
+
+            }
+
+        });
+
+
+        // Maker Modal
+
+        function openMakerModal() {
+
+            document.getElementById('makerModal').style.display = 'flex';
+
+        }
+
+        
+
+        function closeMakerModal() {
+
+            document.getElementById('makerModal').style.display = 'none';
+
+        }
+
+        
+
+        // Close maker modal when clicking outside
+
+        window.addEventListener('click', (e) => {
+
+            const makerModal = document.getElementById('makerModal');
+
+            if (e.target === makerModal) {
+
+                closeMakerModal();
+
+            }
+
+        });
+
+
+        // Animate Stats
+
+        const statNumbers = document.querySelectorAll('.stat-number');
+
+        
+
+        const animateStats = () => {
+
+            statNumbers.forEach(stat => {
+
+                const target = +stat.getAttribute('data-target');
+
+                const increment = target / 200;
+
+                
+
+                const updateStat = () => {
+
+                    const value = +stat.innerText;
+
+                    
+
+                    if (value < target) {
+
+                        stat.innerText = Math.ceil(value + increment);
+
+                        setTimeout(updateStat, 10);
+
+                    } else {
+
+                        stat.innerText = target + (target >= 100 ? 'M+' : 'M');
+
+                    }
+
+                };
+
+                
+
+                updateStat();
+
+            });
+
+        };
+
+        
+
+        // Trigger stats animation when stats section is in view
+
+        const statsSection = document.getElementById('stats');
+
+        
+
+        const statsObserver = new IntersectionObserver((entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    animateStats();
+
+                    statsObserver.unobserve(entry.target);
+
+                }   
+
+            });
+
+        }, { threshold: 0.5 });
+
+        
+
+        statsObserver.observe(statsSection);
+
+    </script>
+
+</body>
+
+</html>
